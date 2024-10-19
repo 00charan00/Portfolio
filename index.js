@@ -1,117 +1,48 @@
+// Correct the element IDs based on your HTML structure
 const consta = document.getElementById('abtnav');
 const const1 = document.getElementById('abt');
 const constb = document.getElementById('acdnav');
 const const2 = document.getElementById('acd');
 const constc = document.getElementById('skilnav');
-const const3 = document.getElementById('add');
-const constd = document.getElementById('pnav');
-const const4 = document.getElementById('prjnav');
+const const3 = document.getElementById('skil');
 
-
-
-
+// Scroll into view functionality for navigation buttons
 consta.addEventListener('click', () => {
-  const1 .scrollIntoView({ behavior: 'smooth' });
+  const1.scrollIntoView({ behavior: 'smooth' });
 });
-
 
 constb.addEventListener('click', () => {
   const2.scrollIntoView({ behavior: 'smooth' });
 });
 
-
 constc.addEventListener('click', () => {
   const3.scrollIntoView({ behavior: 'smooth' });
 });
 
-
-constd.addEventListener('click', () => {
-  const4.scrollIntoView({ behavior: 'smooth' });
+// Change text color when clicked
+consta.addEventListener('click', () => {
+  consta.style.color = 'red';
 });
 
-
-
-
-const texto = document.getElementById('abtnav');
-
-texto.addEventListener('click', () => {
-  texto.style.color = 'red';
+constb.addEventListener('click', () => {
+  constb.style.color = 'red';
 });
 
-const textt = document.getElementById('acdnav');
-
-textt.addEventListener('click', () => {
-  textt.style.color = 'red';
+constc.addEventListener('click', () => {
+  constc.style.color = 'red';
 });
 
-const textz= document.getElementById('skilnav');
-
-textz.addEventListener('click', () => {
-  textz.style.color = 'red';
+// Observer to animate hidden elements on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    } else {
+      entry.target.classList.remove('show');
+    }
+  });
 });
 
-const textx= document.getElementById('pnav');
-
-textx.addEventListener('click', () => {
-  textx.style.color = 'red';
-});
-
-const textc= document.getElementById('yosinav');
-
-textc.addEventListener('click', () => {
-  textc.style.color = 'red';
-});
-
-
-
-
-
-
-
-
-
-
-// function isElementVisible(el) {
-//   var elementTop = el.offsetTop;
-//   var elementBottom = elementTop + el.offsetHeight;
-//   var viewTop = window.pageYOffset;
-//   var viewBottom = viewTop + window.innerHeight;
-
-//   return elementBottom > viewTop && elementTop < viewBottom;
-// }
-
-// var animated = false;
-// var animateMe = document.querySelectorAll(".animate-me");
-
-// function animateOnScroll() {
-//   animateMe.forEach(function(el) {
-//     if (!animated && isElementVisible(el)) {
-//       el.style.left = "0px"; /* animate to final position */
-//       animated = true;
-//     }
-//   });
-// }
-
-// animateOnScroll(); /* check if element is visible on page load */
-
-// window.addEventListener("scroll", animateOnScroll);
-
-  
-  
-  
-  
-const observer = new IntersectionObserver((entries)=>{entries.forEach((entry)=>{
-  console.log(entry)
-  if(entry.isIntersecting){
-    entry.target.classList.add('show');
-  }
-  else{
-    entry.target.classList.remove('show');
-
-  }
-});
-});
-
-const hiddenElements=document.querySelectorAll('.hidden');
-hiddenElements.forEach((el)=>observer.observe(el));
-  
+// Observe elements with the 'hidden' class
+const hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el) => observer.observe(el));
